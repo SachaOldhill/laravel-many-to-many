@@ -55,6 +55,7 @@ class AddForeignKeys extends Migration
       //     $table-> dropForeign('postuser');
       //     $table-> dropForeign('userpost');
       // });
+      Schema::disableForeignKeyConstraints();
       Schema::table('employees', function (Blueprint $table) {
           $table-> dropForeign('employeelocation');
       });

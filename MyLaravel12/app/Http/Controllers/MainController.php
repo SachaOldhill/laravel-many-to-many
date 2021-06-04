@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -18,42 +19,11 @@ class MainController extends Controller
 
   public function home() {
     $posts = Post::all();
+    $employees = Employee::all();
     return view('pages.home', compact(
-      'posts'
+      'posts',
+      'employees'
     ));
     return view('pages.home');
   }
-  // public function show($id) {
-  //   $match = Match::findOrFail($id);
-  //   return view('pages.show', compact(
-  //       'match'
-  //   ));
-  // }
-  // public function create(){
-  //
-  //   return view('pages.create');
-  // }
-  //
-  // public function store(Request $request){
-  //
-  //   $validate = $request -> validate($this -> getValidationRules());
-  //   $match = Match::create($validate);
-  //   // return redirect() -> route('home');
-  //   return redirect() -> route('show', $match -> id);
-  // }
-  // public function destroy($id){
-  //   $match = Match::findOrFail($id);
-  //   $match -> delete();
-  //   return redirect() -> route('home');
-  // }
-  // public function edit($id){
-  //   $match = Match::findOrFail($id);
-  //   return view('pages.edit', compact('match'));
-  // }
-  // public function update(Request $request, $id){
-  //   $validData = $request -> validate($this -> getValidationRules());
-  //   $match = Match::findOrFail($id);
-  //   $match -> update($validData);
-  //   return redirect() -> route('show', $match -> id);
-  // }
 }

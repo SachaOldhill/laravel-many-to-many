@@ -1,11 +1,38 @@
 @extends('layouts.main-layout')
 @section('content')
+  <div class="my_home">
+    <h1>Employees:</h1>
+    <ul>
+      @foreach ($employees as $employee)
+        <li>
+         {{-- <a href="{{ route('show', $post -> id) }}"> --}}
+           <strong>{{ $employee -> firstname }} {{ $employee -> lastname }}</strong>
+           <p>
+             {{ $employee -> location -> state}}
+             -
+             {{ $employee -> location -> street}}
+           </p>
+           <small>
+             {{-- emplo ha un id,quando si fa -> si vanno a prendere tutti i commenti(altra tabella) associati a quell'id del emplo --}}
+             Tasks ({{ $employee -> tasks -> count() }})
+             <ul>
+               @foreach ($employee -> tasks as $task)
+
+                 <li>
+                   #{{ $task -> name }}
+                 </li>
+               @endforeach
+             </ul>
+           </small>
+        </li>
+      @endforeach
+  </ul>
+  </div>
     <div class="my_home">
       <h1>Posts:</h1>
       <ul>
         @foreach ($posts as $post)
           <li>
-           {{-- <a href="{{ route('show', $post -> id) }}"> --}}
              <strong>{{ $post -> title }}</strong>
              <p>{{ $post -> text }}</p>
              <small>
@@ -28,13 +55,6 @@
                  @endforeach
                </ul>
              </small>
-           {{-- </a> --}}
-           {{-- <a href="{{ route('edit', $post -> id) }}">
-             &#9998;
-           </a>
-           <a href="{{ route('destroy', $post -> id) }}">
-             &#10060;
-           </a> --}}
           </li>
         @endforeach
     </ul>
